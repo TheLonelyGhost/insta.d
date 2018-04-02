@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION="0.1.2"
+VERSION="0.1.3"
 
 : "${COMMENT_CHAR:=#}"
 : "${LOG_LEVEL:=7}"
@@ -51,7 +51,7 @@ backup-target() {
   local target bak
   target="$1"
   bak="${1}.old"
-  info "Backing up ${target} as ${bak}"
+  info "Backing up $(pretty-path "$target") as $(pretty-path "$bak")"
 
   # Use `cat` because it'll handle symlinks invisibly. `cp` will
   # make a copy of the symlink, not the content we wish to back up

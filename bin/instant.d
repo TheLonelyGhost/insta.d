@@ -40,7 +40,7 @@ debug "target: $config"
 debug "config.d: $config_d"
 
 if [ ! -e "$config_d" ]; then
-  fatal "ERROR: Directory does not exist (${config_d})"
+  fatal "ERROR: Directory does not exist ($(pretty-path "$config_d"))"
 fi
 
 if [ -e "$config" ]; then
