@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION="0.1.1"
+VERSION="0.1.2"
 
 : "${COMMENT_CHAR:=#}"
 : "${LOG_LEVEL:=7}"
@@ -60,7 +60,7 @@ backup-target() {
 
 pretty-path() {
   local pth
-  pth="${1/${HOME}/~}"
+  pth="${1/#$HOME/\~}"
 
   printf '%s\n' "$pth"
 }
