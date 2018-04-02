@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION="0.1.0"
+VERSION="0.1.1"
 
 : "${COMMENT_CHAR:=#}"
 : "${LOG_LEVEL:=7}"
@@ -51,7 +51,7 @@ backup-target() {
   local target bak
   target="$1"
   bak="${1}.old"
-  debug "Backing up ${target} as ${bak}"
+  info "Backing up ${target} as ${bak}"
 
   # Use `cat` because it'll handle symlinks invisibly. `cp` will
   # make a copy of the symlink, not the content we wish to back up
@@ -70,6 +70,8 @@ append-warning-header() {
   target="$1"
   config_d="$2"
 
+  debug "Appending warning message to $(pretty-path "$target")"
+
   cat <<EOF >> "${target}"
 ${COMMENT_CHAR}
 ${COMMENT_CHAR} ================== WARNING ==================
@@ -86,6 +88,8 @@ append-file() {
   local file target
   target="$1"
   file="$2"
+
+  debug "Appending $(pretty-path "$file") to $(pretty-path "$target")"
 
   printf '\n%s\n%s\n\n' \
     "${COMMENT_CHAR} ==========================================" \

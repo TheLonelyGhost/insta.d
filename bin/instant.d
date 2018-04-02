@@ -52,19 +52,16 @@ append-warning-header "$config" "$config_d"
 
 if [ -e "${config_d}/pre" ]; then
   find "${config_d}/pre" -maxdepth 1 -not -type d | sort | while read -r file; do
-    debug "Copying $(pretty-path "$file") into $(pretty-path "$config")"
     append-file "$config" "$file"
   done
 fi
 
 find "${config_d}" -maxdepth 1 -not -type d | sort | while read -r file; do
-  debug "Copying $(pretty-path "$file") into $(pretty-path "$config")"
   append-file "$config" "$file"
 done
 
 if [ -e "${config_d}/post" ]; then
   find "${config_d}/post" -maxdepth 1 -not -type d | sort | while read -r file; do
-    debug "Copying $(pretty-path "$file") into $(pretty-path "$config")"
     append-file "$config" "$file"
   done
 fi
